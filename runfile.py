@@ -2,21 +2,7 @@ import streamlit as st
 import pandas as pd
  
 # Optional profiling libraries
-from ydata_profiling import ProfileReport
-try:
-    from ydata_profiling import ProfileReport
-    profiling_available = True
-except ModuleNotFoundError:
-    profiling_available = False
-
-if profiling_available:
-    if st.button("Generate Profiling Report"):
-        profile = ProfileReport(df, explorative=True)
-        profile.to_file("profile_report.html")
-        with open("profile_report.html", "r", encoding="utf-8") as f:
-            st.components.v1.html(f.read(), height=800)
-else:
-    st.warning("⚠️ Profiling report not available in this deployment.")
+from streamlit_ydata_profiling import st_profile_report
 
 import sweetviz as sv
 
