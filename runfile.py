@@ -8,6 +8,16 @@ try:
     profiling_available = True
 except ModuleNotFoundError:
     profiling_available = False
+
+if profiling_available:
+    if st.button("Generate Profiling Report"):
+        profile = ProfileReport(df, explorative=True)
+        profile.to_file("profile_report.html")
+        with open("profile_report.html", "r", encoding="utf-8") as f:
+            st.components.v1.html(f.read(), height=800)
+else:
+    st.warning("⚠️ Profiling report not available in this deployment.")
+
 import sweetviz as sv
 
 st.set_page_config(page_title="EDA Workshop App", layout="wide")
