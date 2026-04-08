@@ -2,7 +2,7 @@ import streamlit as st
 import pandas as pd
  
 # Optional profiling libraries
-from streamlit_ydata_profiling import st_profile_report
+st.warning("⚠️ Profiling report not supported in this deployment.")
 
 import sweetviz as sv
 
