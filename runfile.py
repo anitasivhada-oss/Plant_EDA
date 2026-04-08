@@ -1,9 +1,6 @@
 import streamlit as st
 import pandas as pd
 import io
- 
-# Optional profiling libraries
-
 import sweetviz as sv
 
 st.set_page_config(page_title="EDA Workshop App", layout="wide")
@@ -27,25 +24,17 @@ if uploaded_file is not None:
     st.subheader("📈 Descriptive Statistics")
     st.write(df.describe())
 
+    # ✅ Data Info (FIXED)
+    st.subheader("ℹ️ Data Info")
+    buffer = io.StringIO()
+    df.info(buf=buffer)
+    st.text(buffer.getvalue())
 
-st.subheader("ℹ️ Data Info")
-
-buffer = io.StringIO()
-df.info(buf=buffer)
-st.text(buffer.getvalue())
-
+    # ✅ Missing values (FIXED)
     st.subheader("❗ Missing Values")
     st.write(df.isnull().sum())
 
-    # YData Profiling Report
-    st.subheader("📊 Profiling Report (ydata_profiling)")
-    if st.button("Generate Profiling Report"):
-        profile = ProfileReport(df, title="CombinedTraits", explorative=True)
-        profile.to_file("profile_report.html")
-        with open("profile_report.html", "r", encoding="utf-8") as f:
-            st.components.v1.html(f.read(), height=800, scrolling=True)
-
-    # Sweetviz Report
+    # ✅ Sweetviz Report (KEEP THIS)
     st.subheader("🍭 Sweetviz Report")
     if st.button("Generate Sweetviz Report"):
         report = sv.analyze(df)
