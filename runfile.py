@@ -1,3 +1,5 @@
+pip install streamlit pandas ydata-profiling sweetviz
+
 import streamlit as st
 import pandas as pd
 
