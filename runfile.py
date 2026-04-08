@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
-
+ 
 # Optional profiling libraries
-from ydata_profiling import ProfileReport
+from streamlit_ydata_profiling import st_profile_report
 import sweetviz as sv
 
 st.set_page_config(page_title="EDA Workshop App", layout="wide")
