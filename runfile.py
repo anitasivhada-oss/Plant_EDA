@@ -3,7 +3,11 @@ import pandas as pd
  
 # Optional profiling libraries
 from ydata_profiling import ProfileReport
-
+try:
+    from ydata_profiling import ProfileReport
+    profiling_available = True
+except ModuleNotFoundError:
+    profiling_available = False
 import sweetviz as sv
 
 st.set_page_config(page_title="EDA Workshop App", layout="wide")
