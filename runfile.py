@@ -1,5 +1,6 @@
 import streamlit as st
 import pandas as pd
+import io
  
 # Optional profiling libraries
 
@@ -26,11 +27,12 @@ if uploaded_file is not None:
     st.subheader("📈 Descriptive Statistics")
     st.write(df.describe())
 
-    st.subheader("ℹ️ Data Info")
-    buffer = []
-    df.info(buf=buffer)
-    s = "\n".join(buffer)
-    st.text(s)
+
+st.subheader("ℹ️ Data Info")
+
+buffer = io.StringIO()
+df.info(buf=buffer)
+st.text(buffer.getvalue())
 
     st.subheader("❗ Missing Values")
     st.write(df.isnull().sum())
